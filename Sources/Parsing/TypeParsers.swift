@@ -35,7 +35,11 @@ struct TypeParser {
     static let byteRange = { return ($0.1 ?? 0)...(($0.1 ?? 0) + ($0.0 - 1))  } <^> (UInt.parser <&> ("@" *> UInt.parser).optional)
 }
 
-@available(iOS 10.0, OSX 10.12, *) private let dateFormatter = ISO8601DateFormatter()
+@available(iOS 10.0, OSX 10.12, *) private let dateFormatter: ISO8601DateFormatter = {
+    let f = ISO8601DateFormatter()
+    f..formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+    return f
+}()
 
 private let legacyFormatter: DateFormatter = {
     let f = DateFormatter()
