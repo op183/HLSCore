@@ -37,7 +37,7 @@ struct TypeParser {
 
 @available(iOS 10.0, OSX 10.12, *) private let dateFormatter: ISO8601DateFormatter = {
     let f = ISO8601DateFormatter()
-    f..formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+    f.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
     return f
 }()
 
